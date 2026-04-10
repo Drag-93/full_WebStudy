@@ -36,7 +36,7 @@ public class MemberDao {
 		String query="";
 		try {
 			conn=DBConnect.getConnection();
-			query="select * from member_tb2 where email=?";
+			query="select * from member_tb2 where user_email=?";
 			pstm=conn.prepareStatement(query);
 			
 			pstm.setString(1, email);
@@ -77,7 +77,7 @@ public class MemberDao {
 		String query="";
 		try {
 			conn=DBConnect.getConnection();
-			query="select * from member_tb2 where memberId=?";
+			query="select * from member_tb2 where member_id=?";
 			pstm=conn.prepareStatement(query);
 			
 			pstm.setLong(1, memberId);
@@ -148,7 +148,7 @@ public class MemberDao {
 		int rs =0;
 		try {
 			conn=DBConnect.getConnection();
-			query="update member_tb2 set user_email=?,user_pw=?, user_name=?, age=?, role=?,updateTime=? where memberId=?";
+			query="update member_tb2 set user_email=?,user_pw=?, user_name=?, age=?, role=?,updateTime=? where member_id=?";
 			pstm=conn.prepareStatement(query);
 			
 			pstm.setString(1, memberEntity.getUserEmail());
@@ -183,7 +183,7 @@ public class MemberDao {
 		int rs=0;
 		try {
 			conn=DBConnect.getConnection();
-			query="delete from member_tb2 where memberId=?";
+			query="delete from member_tb2 where member_id=?";
 			pstm=conn.prepareStatement(query);
 			
 			pstm.setLong(1, memberId);
@@ -232,7 +232,8 @@ public class MemberDao {
 								rs.getInt(5),
 								Role.valueOf(rs.getString(6)),
 								rs.getTimestamp(7).toLocalDateTime(),
-								rs.getTimestamp(8).toLocalDateTime())						);
+								rs.getTimestamp(8) != null ? rs.getTimestamp(8).toLocalDateTime() : null)); 
+						
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

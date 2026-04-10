@@ -22,7 +22,7 @@ public class DBConnect {
 			System.out.println("Driver OK!");
 			// 2.DB연동
 			conn = DriverManager.getConnection(url, user, password);
-			System.out.println("DB연동 OK!");
+			System.out.println("DB연동");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("Driver Fail!");

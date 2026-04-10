@@ -1,6 +1,7 @@
 package org.web.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.web.constraint.Role;
 import org.web.dto.MemberDto;
 import org.web.service.MemberService;
 import org.web.service.impl.MemberServiceImpl;
@@ -60,12 +62,54 @@ public class MemberController extends HttpServlet{
 			
 		}else if(basicURL.equals("/update.member")) {
 			System.out.println("회원수정");
+			
+			Long memberId=Long.parseLong(request.getParameter("memberId"));
+			String userEmail=request.getParameter("userEmail");
+			String userPw=request.getParameter("userPw");
+			String userName=request.getParameter("userName");
+			int age=Integer.parseInt(request.getParameter("age"));
+			String role=request.getParameter("role").toUpperCase();
+			int rs=service.memberUpdate(new MemberDto(memberId, userEmail, userPw, userName,age, Role.valueOf(role) , null, null));
+			if(rs==1) {
+				System.out.println("회원목록페이지로 이동");
+				url="/select.member";
+			}
+			
 		}else if(basicURL.equals("/delete.member")) {
 			System.out.println("회원탈퇴");
+			
+			Long memberId=Long.parseLong(request.getParameter("memberId"));
+			
+			int rs=service.memberDelete(memberId);
+			
+			if(rs==1) {
+				System.out.println("회원목록페이지로 이동");
+				url="/select.member";
+			}
+			
+			
+			
+			
+			
 		}else if(basicURL.equals("/select.member")) {
 			System.out.println("회원조회(목록)");
+			List<MemberDto> memberList=service.memberList();
+			
+			url="/memberList.jsp";
+			request.setAttribute("memberList", memberList);
+			
+			
 		}else if(basicURL.equals("/detail.member")) {
 			System.out.println("회원조회(상세)");
+			
+			Long memberId = Long.parseLong(request.getParameter("memberId"));
+			
+			MemberDto memberDto=service.memberDetail(memberId);
+			
+			url="/memberDetail.jsp";
+			request.setAttribute("memberDto", memberDto);
+			
+			
 		}
 		else {
 			System.out.println("Fail");

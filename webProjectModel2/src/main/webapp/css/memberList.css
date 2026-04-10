@@ -1,0 +1,158 @@
+@charset "UTF-8";
+/* 전체 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Malgun Gothic", "맑은 고딕", sans-serif;
+    background-color: #f5f7fb;
+    color: #222;
+}
+
+/* 헤더 */
+.header {
+    width: 100%;
+    background-color: #1f2a44;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.nav {
+    max-width: 1200px;
+    height: 80px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.gnb ul {
+    list-style: none;
+    display: flex;
+    gap: 14px;
+}
+
+.gnb ul li a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.gnb ul li a:hover {
+    background-color: #32415f;
+}
+
+/* 목록 영역 */
+.memberList {
+    width: 100%;
+    padding: 60px 20px;
+}
+
+.memberList-con {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 36px;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.memberList-con h1 {
+    font-size: 30px;
+    color: #1f2a44;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* 테이블 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+table th {
+    background-color: #4a7dff;
+    color: #fff;
+    font-size: 15px;
+    padding: 14px 10px;
+    text-align: center;
+}
+
+table td {
+    padding: 14px 10px;
+    text-align: center;
+    border-bottom: 1px solid #e5e9f2;
+    font-size: 14px;
+}
+
+table tr:nth-child(even) td {
+    background-color: #f8faff;
+}
+
+table tr:hover td {
+    background-color: #eef4ff;
+}
+
+/* 보기 링크 */
+table td a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #1f2a44;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+table td a:hover {
+    background-color: #32415f;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+    .memberList-con {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 1000px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .gnb ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .memberList-con {
+        padding: 24px 16px;
+    }
+
+    .memberList-con h1 {
+        font-size: 24px;
+    }
+}
