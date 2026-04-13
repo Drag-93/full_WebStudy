@@ -1,0 +1,128 @@
+@charset "UTF-8";
+/* 기본 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f6fa;
+}
+
+/* 헤더 */
+.header {
+    width: 100%;
+    background-color: #2f3640;
+    padding: 15px 0;
+}
+
+.nav {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #fff;
+    font-size: 24px;
+}
+
+.gnb ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.gnb ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.gnb ul li a:hover {
+    color: #00a8ff;
+}
+
+/* 회원가입 영역 */
+.login {
+    width: 100%;
+    padding: 60px 0;
+}
+
+.login-con {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.login-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.login-form h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* 폼 스타일 */
+.login-form ul {
+    list-style: none;
+}
+
+.login-form ul li {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form input[type="email"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.login-form input:focus {
+    border-color: #00a8ff;
+}
+
+/* 버튼 */
+.login-form input[type="submit"] {
+    background-color: #00a8ff;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: #0097e6;
+}
+
+/* 링크 */
+.login-form a {
+    text-decoration: none;
+    color: #00a8ff;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.login-form a:hover {
+    text-decoration: underline;
+}

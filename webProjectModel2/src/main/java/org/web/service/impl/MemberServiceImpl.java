@@ -118,6 +118,7 @@ public class MemberServiceImpl implements MemberService{
 	public MemberDto memberDetail(Long memberId) {
 		System.out.println("회원 상세 조회");
 		MemberEntity memberEntity=dao.findById(memberId);
+		System.out.println(memberEntity);
 		if(memberEntity==null) {
 			throw new IllegalArgumentException("가입된 회원이 아님");
 		}

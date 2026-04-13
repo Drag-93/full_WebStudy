@@ -4,29 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>join</title>
-<link rel="stylesheet" href="css/join.css" />
 </head>
 <body>
-	<div class="header">
-	<div class="nav">
-	<h1 class="logo">HOME</h1>
-		<div class="gnb">
-			<ul>
-				<li><a href="select.member">회원목록</a></li>
-				<li><a href="#">게시판</a></li>
-				<li><a href="#">상품목록</a></li>
-				<li><a href="joinView.member">회원가입</a></li>
-			</ul>
-		</div>
-	</div>
-</div>
-	<div class="join">
-		<div class="join-con">
-			<div class="join-form">
-			<h1>회원가입페이지</h1>
-			<form action="insert.member" method="POST">
+<%@include file="/common/header.jsp" %>
+	<div class="update">
+		<div class="update-con">
+			<div class="update-form">
+			<h1>정보수정페이지</h1>
+			<form action="update.member" method="POST">
 				<ul>
+					<li>
+						<label for="memberId">아이디</label>
+						<input type="text" name="memberId" id="memberId" />
+					</li>
 					<li>
 						<label for="userEmail">이메일</label>
 						<input type="email" name="userEmail" id="userEmail" />
@@ -43,7 +35,11 @@
 						<label for="age">나이</label>
 						<input type="text" name="age" id="age" />
 					</li>
-					<li><input type="submit" value="회원가입" /></li>
+					<li>
+						<label for="role">권한</label>
+						<input type="text" name="role" id="role" />
+					</li>
+					<li><input type="submit" value="회원정보 수정" /></li>
 					<li><a href="<%=request.getContextPath()%>/">HOME</a></li>
 					<a href="<%=request.getContextPath()%>/select.member">회원목록</a>
 				</ul>

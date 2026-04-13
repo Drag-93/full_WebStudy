@@ -42,7 +42,10 @@ public class MemberController extends HttpServlet{
 		//이동할 URL
 		String url="";
 		if(basicURL.equals("/joinView.member")) {
-			url="/join.jsp";
+			url="/member/join.jsp";
+		}else if(basicURL.equals("/loginView.member")) {
+			//페이지만 이동
+			url="/member/login.jsp";
 		}else if(basicURL.equals("/insert.member")) {
 			System.out.println("회원가입");
 			String userEmail = request.getParameter("userEmail");
@@ -57,7 +60,7 @@ public class MemberController extends HttpServlet{
 			request.setAttribute("msg", "회원가입 성공");
 			
 			//회원가입 성공하면 -> 결과 페이지로 이동
-			request.getRequestDispatcher("/result.jsp").forward(request, response);
+			request.getRequestDispatcher("/member/login.jsp").forward(request, response);
 			return;
 			
 		}else if(basicURL.equals("/update.member")) {
@@ -72,7 +75,7 @@ public class MemberController extends HttpServlet{
 			int rs=service.memberUpdate(new MemberDto(memberId, userEmail, userPw, userName,age, Role.valueOf(role) , null, null));
 			if(rs==1) {
 				System.out.println("회원목록페이지로 이동");
-				url="/select.member";
+				url="/member/select.member";
 			}
 			
 		}else if(basicURL.equals("/delete.member")) {
@@ -84,7 +87,7 @@ public class MemberController extends HttpServlet{
 			
 			if(rs==1) {
 				System.out.println("회원목록페이지로 이동");
-				url="/select.member";
+				url="/member/select.member";
 			}
 			
 			
@@ -95,7 +98,7 @@ public class MemberController extends HttpServlet{
 			System.out.println("회원조회(목록)");
 			List<MemberDto> memberList=service.memberList();
 			
-			url="/memberList.jsp";
+			url="/member/memberList.jsp";
 			request.setAttribute("memberList", memberList);
 			
 			
@@ -105,8 +108,9 @@ public class MemberController extends HttpServlet{
 			Long memberId = Long.parseLong(request.getParameter("memberId"));
 			
 			MemberDto memberDto=service.memberDetail(memberId);
-			
-			url="/memberDetail.jsp";
+			System.out.println(memberId);
+			System.out.println(memberDto);
+			url="/member/memberDetail.jsp";
 			request.setAttribute("memberDto", memberDto);
 			
 			

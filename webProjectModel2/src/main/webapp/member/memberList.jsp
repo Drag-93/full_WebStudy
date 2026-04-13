@@ -15,19 +15,7 @@ List<MemberDto> memberList = (List<MemberDto>) request.getAttribute("memberList"
 <link rel="stylesheet" href="css/memberList.css" />
 </head>
 <body>
-<div class="header">
-	<div class="nav">
-	<h1 class="logo">HOME</h1>
-		<div class="gnb">
-			<ul>
-				<li><a href="select.member">회원목록</a></li>
-				<li><a href="#">게시판</a></li>
-				<li><a href="#">상품목록</a></li>
-				<li><a href="joinView.member">회원가입</a></li>
-			</ul>
-		</div>
-	</div>
-</div>
+<%@include file="/common/header.jsp" %>
 <div class="memberList">
 	<div class="memberList-con">
 		<h1>

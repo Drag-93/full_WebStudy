@@ -93,7 +93,7 @@ public class MemberDao {
 								rs.getInt(5), 
 								Role.valueOf(rs.getString(6)), 
 								rs.getTimestamp(7).toLocalDateTime(), 
-								null);
+								rs.getTimestamp(8)!=null?rs.getTimestamp(8).toLocalDateTime():null);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

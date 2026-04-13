@@ -11,4 +11,48 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.xhtml</welcome-file>
   </welcome-file-list>
+  
+  <!-- exceptiom, 에러페이지 -->
+  <error-page>	<!-- 요청 페이지가 없을때 -->
+  	<error-code>404</error-code>
+  	<location>/error/error404.jsp</location>
+  </error-page>
+  <error-page>	<!-- 문법, 코드가 틀렸을때 -->
+  	<error-code>500</error-code>
+  	<location>/error/error500.jsp</location>
+  </error-page>
+  <error-page>	
+  	<exception-type>java.lang.NullPionterException</exception-type>
+  	<location>/error/errorNull.jsp</location>
+  </error-page>
+  <error-page>	<!-- 이메이르 아이디 검색 등의 인자가 없을때 -->
+  	<exception-type>java.lang.IllegalArgumentException</exception-type>
+  	<location>/error/errorIllegalArgument.jsp</location>
+  </error-page>
+  <error-page>	<!-- 리스트 조회, 회원가입, 회원수정 -->
+  	<exception-type>java.lang.IllegalStateException</exception-type>
+  	<location>/error/errorIllegalState.jsp</location>
+  </error-page>
+  
+  
+  <!-- servlet-mapping : 정적 파일(css,이미지)을 기본 서블릿이 처리하도록 설정 -->
+  <servlet-mapping>
+  	<servlet-name>default</servlet-name>
+  	<url-pattern>*.css</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>default</servlet-name>
+  	<url-pattern>*.jpg</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>default</servlet-name>
+  	<url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  
+  
 </web-app>
