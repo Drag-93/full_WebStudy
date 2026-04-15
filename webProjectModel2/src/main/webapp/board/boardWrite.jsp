@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게시글 작성</title>
+<link rel="stylesheet" href="css/boardWrite.css" />
 </head>
 <body>
 
@@ -25,12 +27,13 @@
 					</li>
 					<li>
 						<label for="memberId">memberId</label>
-						<input name="memberId" id="memberId" />
+						<input name="memberId" id="memberId" 
+						value="${sessionScope.sessionId}" readOnly/>
 					</li>
 
 					<li><input type="submit" value="게시글 작성" /></li>
-					<li><a href="<%=request.getContextPath()%>/">HOME</a></li>
-					<a href="<%=request.getContextPath()%>/boardList.board">게시글목록</a>
+					<li><a href="${pageContext.request.contextPath}/">HOME</a></li>
+					<a href="${pageContext.request.contextPath}/boardList.board">게시글목록</a>
 				</ul>
 			</form>
 	</div>

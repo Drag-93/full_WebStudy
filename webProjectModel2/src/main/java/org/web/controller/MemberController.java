@@ -1,6 +1,7 @@
 package org.web.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.web.constraint.Role;
 import org.web.dto.MemberDto;
@@ -46,6 +48,53 @@ public class MemberController extends HttpServlet{
 		}else if(basicURL.equals("/loginView.member")) {
 			//페이지만 이동
 			url="/member/login.jsp";
+		} else if (basicURL.equals("/loginView.member")) {
+			// 페이지만 이동
+			url = "/member/login.jsp";
+
+		} else if (basicURL.equals("/login.member")) {
+
+			String userEmail = request.getParameter("userEmail");
+			String userPw = request.getParameter("userPw");
+
+			MemberDto memberDto = service.loginFn(userEmail, userPw);
+			HttpSession session = request.getSession();
+			if (memberDto != null) {
+				session.setAttribute("sessionId", memberDto.getMemberId());
+				session.setAttribute("role", memberDto.getRole().toString());
+			}
+			// 로그인 성공
+			// 페이지만 이동
+			url = "/";
+		} else if (basicURL.equals("/logout.member")) {
+
+			HttpSession session = request.getSession();
+			
+			PrintWriter out=response.getWriter();
+
+			if (session != null) {
+				session.invalidate();				
+		/*		
+		¿		out.println("<html>");
+				out.println("<<meta charset='UTF-8'>");
+				out.println("<script>");
+				out.println("alert('로그아웃성공!');  ");
+				out.println("</script>");
+				out.println("</html>");
+				*/
+				
+			}
+			// 페이지만 이동
+			//return;
+			
+			url = "/";	
+		}else if(basicURL.equals("/select.member")) {
+			System.out.println("회원조회(목록)");
+			List<MemberDto> memberList=service.memberList();
+			
+			url="/member/memberList.jsp";
+			request.setAttribute("memberList", memberList);
+
 		}else if(basicURL.equals("/insert.member")) {
 			System.out.println("회원가입");
 			String userEmail = request.getParameter("userEmail");
@@ -56,12 +105,10 @@ public class MemberController extends HttpServlet{
 			
 			int rs=service.memberInsert(new MemberDto(null, userEmail,userPw, userName, age, null, null, null));
 			
-			//메시지 전달
-			request.setAttribute("msg", "회원가입 성공");
-			
-			//회원가입 성공하면 -> 결과 페이지로 이동
-			request.getRequestDispatcher("/member/login.jsp").forward(request, response);
-			return;
+			if(rs==1) {
+				System.out.println("로그인 페이지로 이동");
+				url="/member/login.jsp";
+			}
 			
 		}else if(basicURL.equals("/update.member")) {
 			System.out.println("회원수정");
@@ -75,7 +122,7 @@ public class MemberController extends HttpServlet{
 			int rs=service.memberUpdate(new MemberDto(memberId, userEmail, userPw, userName,age, Role.valueOf(role) , null, null));
 			if(rs==1) {
 				System.out.println("회원목록페이지로 이동");
-				url="/member/select.member";
+				url="/select.member";
 			}
 			
 		}else if(basicURL.equals("/delete.member")) {
@@ -87,20 +134,9 @@ public class MemberController extends HttpServlet{
 			
 			if(rs==1) {
 				System.out.println("회원목록페이지로 이동");
-				url="/member/select.member";
+				url="/select.member";
 			}
-			
-			
-			
-			
-			
-		}else if(basicURL.equals("/select.member")) {
-			System.out.println("회원조회(목록)");
-			List<MemberDto> memberList=service.memberList();
-			
-			url="/member/memberList.jsp";
-			request.setAttribute("memberList", memberList);
-			
+
 			
 		}else if(basicURL.equals("/detail.member")) {
 			System.out.println("회원조회(상세)");

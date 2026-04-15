@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    	<%
+		if(session.getAttribute("sessionId")!=null){
+	%>
+	<script>
+		alert("로그아웃후에 이용할 수 있습니다")
+		location.href="<%=request.getContextPath()%>/";
+	</script>
+	
+	<%
+			//response.sendRedirect("/");
+		}
+	
+	%>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +39,7 @@
 						<input type="password" name="userPw" id="userPw" />
 					</li>
 
-					<li><input type="submit" value="회원가입" /></li>
+					<li><input type="submit" value="로그인" /></li>
 					<li><a href="<%=request.getContextPath()%>/">HOME</a></li>
 					<a href="<%=request.getContextPath()%>/loginView.member">LOGIN</a>
 					<a href="<%=request.getContextPath()%>/select.member">회원목록</a>
@@ -33,6 +48,7 @@
 	</div>
 	</div>
 </div>
-<div class="footer">footer</div>
+	<%@ include file="/common/footer.jsp"%>
+
 </body>
 </html>

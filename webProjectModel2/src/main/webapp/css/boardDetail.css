@@ -1,0 +1,150 @@
+@charset "UTF-8";
+/* 전체 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Malgun Gothic', Arial, sans-serif;
+    background-color: #f4f6f8;
+}
+
+/* 전체 영역 */
+.board-detail {
+    width: 100%;
+    padding: 50px 0;
+}
+
+/* 가운데 정렬 박스 */
+.board-detail-con {
+    width: 800px;
+    margin: 0 auto;
+}
+
+/* 폼 박스 */
+.board-detail-form {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 35px 30px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* 제목 */
+.board-detail-form h1 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #333;
+    color: #222;
+}
+
+/* 리스트 */
+.board-detail-form ul {
+    list-style: none;
+}
+
+/* 각 항목 */
+.board-detail-form ul li {
+    margin-bottom: 18px;
+}
+
+/* 라벨 */
+.board-detail-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* input */
+.board-detail-form input[type="text"] {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.board-detail-form input[type="text"]:focus {
+    border-color: #007bff;
+}
+
+/* readonly */
+.board-detail-form input[readonly] {
+    background-color: #f1f1f1;
+    color: #666;
+}
+
+/* 수정 버튼 */
+.board-detail-form input[type="submit"] {
+    width: 100%;
+    height: 45px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.board-detail-form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* 하단 링크 영역 */
+.board-detail-form .link-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* 링크 버튼 공통 */
+.board-detail-form .link-group a {
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+    transition: opacity 0.2s ease;
+}
+
+/* 삭제 */
+.board-detail-form .delete-btn {
+    background-color: #dc3545;
+}
+
+/* 홈 */
+.board-detail-form .home-btn {
+    background-color: #6c757d;
+}
+
+/* 목록 */
+.board-detail-form .list-btn {
+    background-color: #28a745;
+}
+
+.board-detail-form .link-group a:hover {
+    opacity: 0.9;
+}
+
+/* content는 길 수 있으니 높이 조금 더 */
+#content {
+    height: 44px;
+}
+
+/* 반응형 */
+@media (max-width: 850px) {
+    .board-detail-con {
+        width: 90%;
+    }
+}

@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+if (session.getAttribute("sessionId") != null) {
+%>
+<script>
+		alert("로그아웃후에 이용할 수 있습니다")
+		location.href="<%=request.getContextPath()%>/";
+</script>
+<%
+}
+%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +51,6 @@
 			</div>
 		</div>
 	</div>
-	</div>
+	<%@ include file="/common/footer.jsp"%>
 </body>
 </html>

@@ -248,6 +248,48 @@ public class MemberDao {
 		return memberEntities;
 	}
 	
+	public MemberEntity findByUserEmailAndUserPw(String userEmail, String userPw) {
+		
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		String query = "";
+		ResultSet rs = null;
+
+		MemberEntity memberEntity = null;
+
+		try {
+			conn = DBConnect.getConnection();
+			query = " select * from member_tb2 " + "  where user_email=? and user_pw=? ";
+			pstm = conn.prepareStatement(query);
+
+			pstm.setString(1, userEmail);
+			pstm.setString(2, userPw);
+
+			rs = pstm.executeQuery(); // select
+
+			while (rs.next()) {
+				memberEntity = new MemberEntity((long) rs.getInt(1), rs.getString(2), rs.getString(3), // userPw
+						rs.getString(4), rs.getInt(5), Role.valueOf(rs.getString(6)),
+						rs.getTimestamp(7).toLocalDateTime(), null);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (conn != null)
+					conn.close();
+				if (pstm != null)
+					pstm.close();
+				if (rs != null)
+					rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return memberEntity;
+	}
+	
 	
 	
 	

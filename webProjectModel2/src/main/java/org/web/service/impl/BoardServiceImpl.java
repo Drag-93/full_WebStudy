@@ -68,14 +68,39 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public int boardDelete(Long boardId) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("게시글 삭제");
+		BoardEntity boardEntity = dao.findById(boardId);
+		if(boardEntity==null) {
+			throw new IllegalArgumentException("작성글을 찾을수 없습니다");
+		}
+		int rs = dao.delete(boardId);
+		if(rs==1) {
+			System.out.println("게시글 삭제 성공");
+		}else {
+			System.out.println("게시글 삭제 실패");
+		}
+		
+		return rs;
 	}
 
 	@Override
 	public int boardUpdate(BoardDto boardDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("게시글 수정");
+		BoardEntity boardEntity = dao.findById(boardDto.getboardId());
+
+		if(boardEntity==null) {
+			throw new IllegalArgumentException("작성글을 찾을수 없습니다");
+		}
+		System.out.println(boardDto);
+		int rs = dao.saveUpdate(BoardEntity.toUpdateBoardEntity(boardDto));
+		
+		if(rs==1) {
+			System.out.println("게시글 수정 성공");
+		}else {
+			System.out.println("게시글 수정 실패");
+		}
+		
+		return rs;
 	}
 
 	

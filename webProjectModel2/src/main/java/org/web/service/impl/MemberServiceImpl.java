@@ -125,6 +125,25 @@ public class MemberServiceImpl implements MemberService{
 		
 		return MemberDto.toMemberDto(memberEntity);
 	}
-
+	//로그인
+	@Override
+	public MemberDto loginFn(String userEmail, String userPw) {
+		System.out.println(userEmail);
+		System.out.println(userPw);
+		MemberEntity memberEntity = dao.findByEmail(userEmail);
+		if (memberEntity == null) {
+			throw new IllegalArgumentException("회원이 존재 하지 않는다!");
+		}
+		MemberEntity memberEntity2 = dao.findByUserEmailAndUserPw(userEmail, userPw);
+		if (memberEntity2 == null) {
+			throw new IllegalArgumentException("로그인 실패!!");
+		}
+		return MemberDto.toMemberDto(memberEntity2);
+	}
+	@Override
+	public List<MemberDto> findByMemberIdAndAmount() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 

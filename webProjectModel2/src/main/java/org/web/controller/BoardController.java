@@ -76,12 +76,31 @@ public class BoardController extends HttpServlet{
 			System.out.println("게시글 상세 조회");
 			Long boardId= Long.parseLong(request.getParameter("boardId"));
 			BoardDto boardDto = service.boardDetail(boardId);
-			System.out.println(boardId);
+			
 			url="/board/boardDetail.jsp";
 			request.setAttribute("boardDto", boardDto);
 			
 		}else if(basicURL.equals("/boardDelete.board")) {
+			System.out.println("게시글 삭제");
+			Long boardId= Long.parseLong(request.getParameter("boardId"));
+			int rs=service.boardDelete(boardId);
 			
+			if(rs==1) {
+				System.out.println("게시글 목록 페이지로 이동");
+				response.sendRedirect(request.getContextPath()+"/boardList.board");
+				return;
+			}
+		}else if(basicURL.equals("/boardUpdate.board")) {
+			System.out.println("게시글 수정");
+			Long boardId=Long.parseLong(request.getParameter("boardId"));
+			String title = request.getParameter("title"); 
+			String content = request.getParameter("content");
+			int rs=service.boardUpdate(new BoardDto(boardId, title, content, null, null, null));
+			if(rs==1) {
+				System.out.println("게시글 목록 페이지로 이동");
+				response.sendRedirect(request.getContextPath()+"/boardList.board");
+				return;
+			}
 		}
 		else {
 			System.out.println("Fail");

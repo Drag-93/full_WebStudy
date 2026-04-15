@@ -6,7 +6,10 @@
 <%
 List<MemberDto> memberList = (List<MemberDto>) request.getAttribute("memberList");
 %>
-    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ 
+ 
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +39,7 @@ List<MemberDto> memberList = (List<MemberDto>) request.getAttribute("memberList"
 			<%
 			for(MemberDto memberDto: memberList){			
 			%>
-			<tr>
+					<!-- 	<tr>
 				<td><%=memberDto.getMemberId() %></td>
 				<td><%=memberDto.getUserEmail() %></td>
 				<td><%=memberDto.getUserPw()%></td>
@@ -48,8 +51,27 @@ List<MemberDto> memberList = (List<MemberDto>) request.getAttribute("memberList"
 				<td>
 				<a href="<%=request.getContextPath()%>/detail.member?memberId=<%=memberDto.getMemberId()%>">보기</a>
 				</td>	
-			</tr>
+			</tr>-->
 			<%} %>
+			<%--JSTL forEach --%>
+			<c:forEach var="member" items="${memberList }">
+				<tr>
+				<td><c:out value="${member.memberId }"></c:out></td>
+				<td><c:out value="${member.userEmail }"></c:out></td>
+				<td><c:out value="${member.userPw }"></c:out></td>
+				<td><c:out value="${member.userName }"></c:out></td>
+				<td><c:out value="${member.age }"></c:out></td>
+				<td><c:out value="${member.role }"></c:out></td>
+				<td><c:out value="${member.createTime }"></c:out></td>
+				<td><c:out value="${member.updateTime}"></c:out></td>							
+				<td><a href="${pageContext.request.contextPath }/detail.member?memberId=${member.memberId}">보기</a></td>
+				</tr>
+			
+			</c:forEach>
+
+			
+			
+
 			
 			
 		</table>

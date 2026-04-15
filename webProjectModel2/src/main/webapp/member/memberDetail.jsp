@@ -5,7 +5,7 @@
     <%
     MemberDto memberDto = (MemberDto)request.getAttribute("memberDto");
     %>
-    
+      <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <!DOCTYPE html>
 <html>
@@ -19,54 +19,59 @@
 	<div class="member-detail">
 		<div class="member-detail-con">
 			<div class="member-detail-form">
-			<h1><%=memberDto.getUserName() %>님 회원정보</h1>
+			<c:set var="member" value="${memberDto}"/>
+			<h1>${member.userName}님 회원정보</h1>
 			<ul>
 				<form action="update.member"method ="POST">
 				<ul>
 					<li>
 						<label for="memberId">아이디</label>
 						<input type="text" name="memberId" id="memberId"
-						value = "<%=memberDto.getMemberId() %>" readOnly/>
+						value = "${member.memberId}" readOnly/>
 					</li>
 					<li>
 						<label for="userEmail">이메일</label>
 						<input type="email" name="userEmail" id="userEmail" 
-						value = "<%=memberDto.getUserEmail() %>"/>
+						value = "${member.userEmail}"/>
 					</li>
 					<li>
 						<label for="userPw">비밀번호</label>
 						<input type="password" name="userPw" id="userPw" 
-						value = "<%=memberDto.getUserPw()%>"/>
+						value = "${member.userPw}"/>
 					</li>
 					<li>
 						<label for="userName">이름</label>
 						<input type="text" name="userName" id="userName" 
-						value = "<%=memberDto.getUserName() %>"/>
+						value = "${member.userName}"/>
 					</li>
 					<li>
 						<label for="age">나이</label>
 						<input type="text" name="age" id="age" 
-						value = "<%=memberDto.getAge() %>"/>
+						value = "${member.age}"/>
 					</li>
 					<li>
 						<label for="role">권한</label>
 						<input type="text" name="role" id="role" 
-						value = "<%=memberDto.getRole() %>"/>
+						value = "${member.role}" readOnly/>
 					</li>
 					<li>
 						<label for="createTime">createTime</label>
 						<input type="text" name="createTime" id="createTime" 
-						value = "<%=memberDto.getCreateTime() %>"/>
+						value = "${member.createTime}>" readOnly/>
 					</li>
 					<li>
 						<label for="updateTime">updateTime</label>
 						<input type="text" name="updateTime" id="updateTime" 
-						value = "<%=memberDto.getUpdateTime() %>"/>
+						value = "${member.updateTime}" readOnly/>
 					</li>
+					<c:if test="${sessionScope.sessionId==member.memberId||sessionScope.role eq 'ADMIN' }">
+					
 					<li><input type="submit" value="회원정보 수정" /></li>
-					<a href="<%=request.getContextPath()%>/delete.member?memberId=<%=memberDto.getMemberId()%>">회원탈퇴</a>
-					<li><a href="<%=request.getContextPath()%>/">HOME</a></li>
-					<a href="<%=request.getContextPath()%>/select.member">회원목록</a>
+					<a href="${pageContext.request.contextPath}/delete.member?memberId=${member.memberId}">회원탈퇴</a>
+					</c:if>
+					
+					<li><a href="${pageContext.request.contextPath}/">HOME</a></li>
+					<a href="${pageContext.request.contextPath}/select.member">회원목록</a>
 				</ul>
 				</form>
 			</ul>

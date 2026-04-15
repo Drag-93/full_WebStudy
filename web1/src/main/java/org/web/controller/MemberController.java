@@ -60,7 +60,7 @@ public class MemberController extends HttpServlet{
 			System.out.println("회원가입 페이지");
 			
 			//JSP -> View로 이동
-			request.getRequestDispatcher("/join.jsp").forward(request, response);
+//			request.getRequestDispatcher("/join.jsp").forward(request, response);
 			
 		}  else if(basicURL.equals("/update.member")) {
 			System.out.println("회원수정");

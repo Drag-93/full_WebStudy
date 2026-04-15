@@ -143,6 +143,72 @@ public class BoardDao {
 			}
 			return boardEntity;
 		}
+
+
+
+
+		public int delete(Long boardId) {
+			Connection conn=null;
+			PreparedStatement pstm =null;
+			String query="";
+			int rs =0;
+			try {
+				conn=DBConnect.getConnection();
+				query="delete from board_tb2 where board_id=?";
+						
+				pstm=conn.prepareStatement(query);
+				
+				pstm.setLong(1, boardId);
+				
+				rs=pstm.executeUpdate();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(conn !=null ) conn.close();
+					if(pstm !=null) pstm.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			return rs;
+		}
+
+
+
+
+		public int saveUpdate(BoardEntity boardEntity) {
+			Connection conn=null;
+			PreparedStatement pstm =null;
+			String query="";
+			int rs =0;
+			try {
+				conn=DBConnect.getConnection();
+				query="update board_tb2 set title=?,content=?,updateTime=? where board_id=?";
+				pstm=conn.prepareStatement(query);
+				
+				pstm.setString(1, boardEntity.getTitle());
+				pstm.setString(2, boardEntity.getContent());
+				pstm.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+				pstm.setLong(4, boardEntity.getboardId());
+				
+				rs=pstm.executeUpdate();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(conn !=null ) conn.close();
+					if(pstm !=null) pstm.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			return rs;
+		}
 		}
 		
 		

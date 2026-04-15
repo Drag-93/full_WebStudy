@@ -1,42 +1,33 @@
 package org.web.connect;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class DBConnect {
-	// -> 커넥션풀(DBCP) 사용
+
 	public static Connection getConnection() {
-		// DB-> 연동 객체
+		
 		Connection conn = null;
-
-		// Mysql,MariaDB
-		String driver = "com.mysql.cj.jdbc.Driver";// 1.driver
-		String url = "jdbc:mysql://@localhost:3306/mysql04";// DB url
-		String user = "root"; // 계정 아이디
-		String password = "1234"; // 계정 비빌번호
-
+		DataSource dataSource;
 		try {
-			// 1.드라이버 연결
-			Class.forName(driver);
-			System.out.println("Driver OK!");
-			// 2.DB연동
-			conn = DriverManager.getConnection(url, user, password);
-			System.out.println("DB연동");
-
-		} catch (ClassNotFoundException e) {
-			System.out.println("Driver Fail!");
+			//공유자원
+			Context context =new InitialContext();
+			
+			dataSource= (DataSource)context.lookup("java:comp/env/jdbc/mysqlDB");
+			
+			conn=dataSource.getConnection();
+			System.out.println("Connection OK");
+			
+		}catch(NamingException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
-			System.out.println("DB연동 Fail!");
+		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-
 		return conn;
-		
-	}
-	public static void main(String[] args) {
-		DBConnect.getConnection();
-		
 	}
 }

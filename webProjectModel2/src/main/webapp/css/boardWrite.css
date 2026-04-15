@@ -1,0 +1,147 @@
+@charset "UTF-8";
+/* 기본 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Malgun Gothic', Arial, sans-serif;
+    background-color: #f4f6f8;
+}
+
+/* 전체 영역 */
+.boardWrite {
+    width: 100%;
+    padding: 50px 0;
+}
+
+/* 중앙 정렬 */
+.boardWrite-con {
+    width: 700px;
+    margin: 0 auto;
+}
+
+/* 폼 박스 */
+.boardWrite-form {
+    background-color: #fff;
+    padding: 35px 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+/* 제목 */
+.boardWrite-form h1 {
+    font-size: 26px;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #333;
+    color: #222;
+}
+
+/* 리스트 */
+.boardWrite-form ul {
+    list-style: none;
+}
+
+/* 각 항목 */
+.boardWrite-form ul li {
+    margin-bottom: 18px;
+}
+
+/* 라벨 */
+.boardWrite-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* 입력창 */
+.boardWrite-form input[type="text"],
+.boardWrite-form input:not([type]) {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+/* focus 효과 */
+.boardWrite-form input:focus {
+    border-color: #007bff;
+}
+
+/* 내용 input 좀 크게 */
+#content {
+    height: 44px;
+}
+
+/* 제출 버튼 */
+.boardWrite-form input[type="submit"] {
+    width: 100%;
+    height: 45px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.boardWrite-form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* 링크 영역 */
+.boardWrite-form .link-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+/* 링크 버튼 */
+.boardWrite-form .link-group a {
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+/* 홈 */
+.home-btn {
+    background-color: #6c757d;
+}
+
+/* 목록 */
+.list-btn {
+    background-color: #28a745;
+}
+
+.boardWrite-form .link-group a:hover {
+    opacity: 0.9;
+}
+
+/* footer */
+.footer {
+    margin-top: 50px;
+    text-align: center;
+    padding: 20px;
+    background-color: #222;
+    color: #fff;
+}
+
+/* 반응형 */
+@media (max-width: 750px) {
+    .boardWrite-con {
+        width: 90%;
+    }
+}
